@@ -8,10 +8,11 @@ if(!$conn){
 	echo "No se puede conectar a la bbdd";	
 }
 else{
-    $insert_query = "INSERT INTO usuaris (dni,nom, cognoms, Nota) VALUES ('18346282R','mar', 'saro', '3')";
-    $query_insert = mysqli_query($conn, $insert_query);
-    $affected = mysqli_affected_rows($conn);
-    echo "se han insertado $affected ";
+    $sql="SELECT * FROM usuaris WHERE Nota >= 5";
+    $query=mysqli_query($conn, $sql);
+    while( $row = mysqli_fetch_array($query)){
+        echo "Nom: " . $row ['nom'] . " cognom: " . $row['cognom'] . " Nota: " . $row['Nota'] . "<br>";
+    }
+    $result = mysqli_fetch_array($query);
 }
-
 ?>
